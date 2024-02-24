@@ -1,0 +1,69 @@
+install.packages("tidyverse")
+install.packages("Hmisc")
+install.packages("caret")
+install.packages("ROSE")
+install.packages("ggplot2")
+install.packages("e1071")
+install.packages("corrplot")
+install.packages("broom")
+install.packages("party")
+library(tidyverse)
+library(Hmisc)
+library(caret)
+library(ROSE)
+library(ggplot2)
+#library(gridExtra)
+library(e1071)
+library(corrplot)
+library(broom)
+library(party)
+data <- read.csv("C:/Users/Lenovo/Desktop/creditcard.csv", stringsAsFactors = T)
+str(data)
+data$Class <- as.factor(data$Class)
+levels(data$Class) <- c("Legit", "Fraud")
+fig <- function(width, height){options(repr.plot.width = width, repr.plot.height = height)}
+summary(data)
+fig(10, 6)
+ggplot(data, aes(x=Class, fill = Class)) + geom_bar(color = "black") + ggtitle("Bar Distribution of Class") + theme(plot.title = element_text(hjust = 0.5, face = "bold"))
+counts <- table(data$Class)
+result <- data.frame(table(data$Class), round(prop.table(counts), 5))
+noms <- c("Class", "Value", "none", "Proportion")
+names(result) <- noms
+print(result[c(1,2,4)])
+fig(10, 6)
+p <- ggplot(data, aes(x=Amount)) + geom_histogram(fill = "green", color = "black", bins = 30) + 
+ggtitle("Histogram Distribution of Amount") + theme(plot.title = element_text(hjust = 0.5, face = "bold"))
+p <- ggplot(data, aes(x=Amount)) + geom_histogram(fill = "green", color = "black", bins = 30) + ggtitle("Histogram Distribution of Amount") + theme(plot.title = element_text(hjust = 0.5, face = "bold"))
+p
+find_outlier_range <- function(x){outliers <- boxplot.stats(x)$out return(range(outliers))}
+find_outlier_range <- function(x){outliers <- boxplot.stats(x)$out return(range(outliers))}
+find_outlier_range <- function(x){outliers <- boxplot.stats(x)$out return(range(outliers))}
+find_outlier_range <- function(x){outliers <- boxplot.stats(x)$out return(range(outliers))}
+find_outlier_range <- function(x){outliers <- boxplot.stats(x)$out}
+find_outlier_range(data$Amount)
+colSums(is.na(data))
+sum(duplicated(data))
+data <- distinct(data)
+data$Time <- NULL
+data$Amount <- scale(data$Amount)
+summary(data$Amount)
+fig(16,12)
+data2 <- data
+data2$Class <- as.numeric(data2$Class)
+corr <- cor(data2[], method = "pearson")
+corrplot(corr)
+set.seed(123)
+indices <- createDataPartition(data$Class, p=0.8, list = F)
+trainData <- data[indices,]
+testData <- data[-indices,]
+NBmodCCF <- naiveBayes(Class ~ ., data = trainData, laplace = 1)
+model_nb_prediction <- predict(NBmodCCF, newdata = testData, type = "class")
+roc.curve(testData$Class, model_nb_prediction, plotit = TRUE)
+cm <- table(testData$Class, model_nb_prediction
+cm
+cm <- table(testData$Class, model_nb_prediction
+cm <- table(testData$Class, model_nb_prediction
+cm <- table(testData$Class, model_nb_prediction)
+cm
+xtab <- table(model_nb_prediction, testData$Class)
+confusionMatrix(xtab)
