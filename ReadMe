@@ -1,0 +1,9 @@
+The below link is the csv file that contain the data for the training of credit card fraud detection
+
+https://umsedumy-my.sharepoint.com/:x:/g/personal/chong_shi_bi20_iluv_ums_edu_my/EQBUwH4MeldFi-gHsHC_vqIBCVIDaWts7AuPPaXTS-HrWQ?e=uBuvyd
+
+The only one file NaiveBayesAndDecisionTree contain the R language source code for training the data.
+They have the same preprocess of data including check for lost data, remove outlier, etc.
+Then 2 models will be trained using Naive Bayes and Decision Tree seperately.
+
+The results and analysis is based on the confusion matrix and AUC-ROC of both models.
